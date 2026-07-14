@@ -50,33 +50,40 @@ body{
 
 .slice{position:absolute;opacity:0;pointer-events:none;font-size:0.9rem;white-space:nowrap;transition:opacity 0.2s;}
 
-.pizza:hover{
-  width:100%;max-width:760px;height:64px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;padding:0 12px;
-  animation: circleToPyramidToRect 0.7s ease-in-out forwards;
+@media (min-width: 701px) {
+  .pizza-nav:hover .pizza {
+    width:100%;max-width:760px;height:64px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;padding:0 12px;
+    animation: circleToPyramidToRect 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    
+    /* Animated glowing border */
+    border: 2px solid transparent;
+    background: 
+      linear-gradient(90deg, rgba(128,0,32,0.95), rgba(160,20,60,0.95)) padding-box,
+      conic-gradient(from var(--border-angle), transparent 50%, var(--accent) 100%) border-box;
+  }
+  .pizza-nav:hover .pizza::after {
+    content: ''; position: absolute; inset: -2px; border-radius: inherit; z-index: -1;
+    animation: borderSpin 3s linear infinite;
+  }
+
+  .pizza-nav:hover .pizza-label {opacity:0;position:absolute;pointer-events:none;}
   
-  /* Animated glowing border */
-  border: 2px solid transparent;
-  background: 
-    linear-gradient(90deg, rgba(128,0,32,0.95), rgba(160,20,60,0.95)) padding-box,
-    conic-gradient(from var(--border-angle), transparent 50%, var(--accent) 100%) border-box;
-}
-.pizza:hover::after {
-  content: ''; position: absolute; inset: -2px; border-radius: inherit; z-index: -1;
-  animation: borderSpin 3s linear infinite;
+  .pizza-nav:hover .slice {
+    position:relative;opacity:1;pointer-events:auto;background:transparent;color:#fff;
+    padding:10px 14px;border-radius:8px;margin:0 4px;
+    animation: fadeInSlices 0.4s ease 0.8s forwards; opacity: 0;
+  }
 }
 
 @keyframes borderSpin { 100% { --border-angle: 1turn; } }
 
 @keyframes circleToPyramidToRect {
-  0% { width: 88px; height: 88px; border-radius: 0; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
-  50% { width: 140px; height: 140px; border-radius: 0; clip-path: polygon(50% 0%, 100% 100%, 0% 100%, 0% 100%); }
-  99% { width: 100%; height: 64px; border-radius: 16px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  0% { width: 88px; height: 88px; border-radius: 50%; clip-path: polygon(0 -20%, 120% 50%, 50% 120%, -20% 50%); }
+  45% { width: 140px; height: 140px; border-radius: 0; clip-path: polygon(50% 0%, 100% 100%, 0% 100%, 0% 100%); }
+  99% { width: 100%; height: 64px; border-radius: 16px; clip-path: polygon(-5% -5%, 105% -5%, 105% 105%, -5% 105%); }
   100% { clip-path: none; }
 }
-
-.pizza:hover .pizza-label{opacity:0;position:absolute;pointer-events:none;}
-.pizza:hover .slice{position:relative;opacity:1;pointer-events:auto;background:transparent;color:#fff;padding:10px 14px;border-radius:8px;margin:0 4px;animation: fadeInSlices 0.4s ease 0.7s forwards; opacity: 0;}
 
 @keyframes fadeInSlices { to { opacity: 1; } }
 
@@ -138,7 +145,6 @@ h2{text-align:center}
 @media (max-width:700px){
   .pizza-nav{left:16px;top:12px;transform:none;width:auto;justify-content:flex-start}
   .pizza{width:64px;height:64px;border-radius:50%}
-  .pizza:hover{width:64px;height:64px}
 
   /* When JS toggles .expanded on mobile */
   .pizza.expanded{width:calc(100vw - 32px);height:auto;border-radius:12px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center}
