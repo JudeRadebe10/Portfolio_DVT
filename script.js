@@ -151,10 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
     link.remove();
   });
 
-  // Contact form validation and fake send
+  // Contact form validation and real send via formsubmit.co
   const form = document.getElementById('contactForm');
   const status = document.querySelector('.form-status');
-  form.addEventListener('submit', (e)=>{
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const data = new FormData(form);
     const name = data.get('name')?.trim();
@@ -167,7 +167,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // simple email check
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ status.textContent = 'Enter a valid email.'; status.style.color='crimson'; return; }
     status.textContent = 'Sending message...'; status.style.color = 'var(--primary)';
-    setTimeout(()=>{ status.textContent = 'Message sent — I will respond shortly.'; status.style.color='green'; form.reset(); }, 900);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/khubonifoundation@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Name: name + " " + (data.get('surname')?.trim() || ''),
+          Email: email,
+          Phone: data.get('phone')?.trim() || 'N/A',
+          Subject: subject,
+          Message: message,
+          _replyto: email
+        })
+      });
+      if (response.ok) {
+        status.textContent = 'Message sent successfully!'; status.style.color='green'; 
+        form.reset();
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch(err) {
+      status.textContent = 'Error sending message. Please try again.'; status.style.color='crimson';
+    }
   });
 
   // Accessibility: keyboard nav for slices
