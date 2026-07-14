@@ -97,7 +97,7 @@ h2{text-align:center}
 /* Read-more collapsed content */
 .read-more-wrap{position:relative}
 .read-more-content{max-height:0;overflow:hidden;transition:max-height .45s ease;padding-top:0}
-.read-more-wrap.expanded .read-more-content{max-height:600px;padding-top:12px}
+.read-more-wrap.expanded .read-more-content{max-height:1500px;padding-top:12px}
 .read-more-toggle{margin-top:10px}
 
 .card{background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(245,245,245,0.8));border-radius:14px;padding:18px;box-shadow:var(--shadow);backdrop-filter:blur(6px);border:1px solid rgba(128,0,32,0.06);transition:transform 1s}
