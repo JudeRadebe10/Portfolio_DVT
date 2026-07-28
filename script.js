@@ -125,23 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
   
 
-    // Fallback: generate a simple text CV
-    const resume = [];
-    resume.push('Jude Radebe - Software Developer & Data Enthusiast');
-    resume.push('Location: Fourways, Gauteng, South Africa');
-    resume.push('Phone: 068 588 7213');
-    resume.push('Email: khubonifoundation@gmail.com');
-    const summaryEl = document.querySelector('.summary p');
-    resume.push('\nProfessional Summary:\n'+(summaryEl ? summaryEl.textContent : ''));
-    resume.push('\nWork Experience:\n- Freelance Software Engineer (Intellisekt Development)\n- Quality Assessor (Clientèle Life)\n- IT Support (Job Shadowing) (Clientèle Life)');
-    const blob = new Blob([resume.join('\n\n')], {type:'text/plain'});
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Jude_Radebe_ResumeM.txt';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  });
+ 
 
   // Contact form validation and real send via formsubmit.co
   const form = document.getElementById('contactForm');
