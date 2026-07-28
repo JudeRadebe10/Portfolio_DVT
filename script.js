@@ -115,11 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if(contactBtn) contactBtn.addEventListener('click', ()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}));
 
   // Download CV: prefer PDF if present, otherwise generate a TXT fallback
- document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("downloadCv");
+const button = document.getElementById("downloadCv");
 
-    if (!button) return;
-
+if (button) {
     button.addEventListener("click", () => {
         const link = document.createElement("a");
         link.href = "./Jude_Radebe_ResumeM.pdf";
@@ -129,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click();
         document.body.removeChild(link);
     });
-});
+}
 
   // Contact form validation and real send via formsubmit.co
   const form = document.getElementById('contactForm');
