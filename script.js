@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Download CV: prefer PDF if present, otherwise generate a TXT fallback
   document.getElementById('downloadCv').addEventListener('click', async ()=>{
-    const pdfPath = 'Jude_Radebe_Resume.pdf';
+    const pdfPath = 'Jude_Radebe_ResumeM.pdf';
     try{
       const res = await fetch(pdfPath, {method:'HEAD'});
       if(res.ok){
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const blob = new Blob([resume.join('\n\n')], {type:'text/plain'});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'Jude_Radebe_CV.txt';
+    link.download = 'Jude_Radebe_ResumeM.pdf';
     document.body.appendChild(link);
     link.click();
     link.remove();
