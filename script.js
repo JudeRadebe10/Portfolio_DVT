@@ -115,13 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if(contactBtn) contactBtn.addEventListener('click', ()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}));
 
   // Download CV: prefer PDF if present, otherwise generate a TXT fallback
- document.addEventListener('DOMContentLoaded',() =>{
-   const button = document.getElementById('Jude_Radebe_ResumeM.pdf');
-   if(!button) return;
-   button.addEventListener('click' , () => {
-     window.print();
-   });
-   });
+ document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("downloadCv");
+
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = "Jude_Radebe_ResumeM.pdf";
+        link.download = "Jude_Radebe_ResumeM.pdf";
+        link.click();
+    });
+});
 
   // Contact form validation and real send via formsubmit.co
   const form = document.getElementById('contactForm');
