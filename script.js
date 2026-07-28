@@ -115,23 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if(contactBtn) contactBtn.addEventListener('click', ()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}));
 
   // Download CV: prefer PDF if present, otherwise generate a TXT fallback
-  document.getElementById('downloadCv').addEventListener('click', async ()=>{
-    const pdfPath = 'Jude_Radebe_ResumeM.pdf';
-    try{
-      const res = await fetch(pdfPath, {method:'HEAD'});
-      if(res.ok){
-        // PDF exists — trigger download
-        const link = document.createElement('a');
-        link.href = pdfPath;
-        link.download = pdfPath;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        return;
-      }
-    }catch(e){
-      // network error or file not found — fall back to TXT
-    }
+  document.getElementById("downloadCv").addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = "Jude_Radebe_ResumeM.pdf";
+    link.download = "Jude_Radebe_ResumeM.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+  
 
     // Fallback: generate a simple text CV
     const resume = [];
