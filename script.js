@@ -122,9 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     button.addEventListener("click", () => {
         const link = document.createElement("a");
-        link.href = "Jude_Radebe_ResumeM.pdf";
+        link.href = "./Jude_Radebe_ResumeM.pdf";
         link.download = "Jude_Radebe_ResumeM.pdf";
+
+        document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
     });
 });
 
