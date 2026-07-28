@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const blob = new Blob([resume.join('\n\n')], {type:'text/plain'});
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'Jude_Radebe_ResumeM.pdf';
+    link.download = 'Jude_Radebe_ResumeM.txt';
     document.body.appendChild(link);
     link.click();
     link.remove();
